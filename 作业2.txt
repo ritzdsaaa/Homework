@@ -1,0 +1,451 @@
+1.using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Q1RectangleClass
+{
+    internal class Rectangle
+    {
+        public int Height { get; set; }
+        public int Width { get; set; }
+
+        public Rectangle(int height, int width)
+        {
+            Height = height;
+            Width = width;
+        }
+
+        public int getPerimeter()
+        {
+            return Height*2+Width*2;
+        }
+
+        public int getArea()
+        { 
+            return Height*Width;
+        }
+    }
+}
+
+namespace Q1RectangleClass
+{
+    class Program
+    {
+        static void Main(String[] args)
+        {
+            Rectangle rectangle = new Rectangle(2,3);
+            Console.WriteLine("长方形的面积是：" + rectangle.getArea());
+            Console.WriteLine("长方形的周长是："+ rectangle.getPerimeter());
+        }
+    }
+}
+2.using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Q2Staff
+{
+    internal class Staff
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Sex { get; set; }
+        public string Department { get; set; }
+        public string Number { get; set; }
+
+        public Staff(string name, int age, string sex, string department, string number)
+        {
+            Name = name;
+            Age = age;
+            Sex = sex;
+            Department = department;
+            Number = number;
+        }
+        
+        public void showDetails()
+        {
+            Console.WriteLine("员工姓名是："+ Name);
+            Console.WriteLine("员工年龄是："+ Age);
+            Console.WriteLine("员工性别是："+ Sex);
+            Console.WriteLine("员工部门是："+ Department);
+            Console.WriteLine("员工工号是："+ Number);
+         }
+    }
+}
+
+namespace Q2Staff
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Staff staff = new Staff("张三", 20, "M", "Personnel", "000001");
+            staff.showDetails();
+        }
+    }
+}
+3.
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Q3MyMath
+{
+    internal class MyMath
+    {
+        public int firstNumber { get; set; }
+        public int secondNumber { get; set; }
+
+        public MyMath(int firstNumber, int secondNumber)
+        {
+            this.firstNumber = firstNumber;
+            this.secondNumber = secondNumber;
+        }
+
+        public int add()
+        { return firstNumber + secondNumber; }
+
+        public int subtract()
+        { return firstNumber - secondNumber; }
+
+        public int multiply()
+        { return firstNumber * secondNumber; }
+
+        public double divide()
+        { return (double)firstNumber / secondNumber; }
+    }
+}
+
+namespace Q3MyMath
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MyMath myMath = new MyMath(3,4);
+            Console.WriteLine(myMath.firstNumber+"+"+myMath.secondNumber+"="+myMath.add());
+            Console.WriteLine(myMath.firstNumber + "-" + myMath.secondNumber + "=" + myMath.subtract());
+            Console.WriteLine(myMath.firstNumber + "*" + myMath.secondNumber + "=" + myMath.multiply());
+            Console.WriteLine(myMath.firstNumber + "/" + myMath.secondNumber + "=" + myMath.divide());
+        }
+    }
+}
+4.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Q4Circle
+{
+    internal class Circle
+    {
+        public const double PI = 3.1415;
+        public double radius { get; set; }
+
+        public Circle(double radius)
+        {
+            this.radius = radius;
+        }
+
+        public double getCircumference()
+        {
+            return 2 * PI * radius;
+        }
+
+        public double getArea()
+        {
+            return PI* radius*radius;
+        }
+    }
+}
+
+namespace Q4Circle
+{
+    class Program
+    {
+        static void Main(String[] args)
+        {
+            Circle circle = new Circle(3);
+            Console.WriteLine("半径为"+circle.radius+"的圆 周长是："+circle.getCircumference());
+            Console.WriteLine("半径为" + circle.radius + "的圆 面积是：" + circle.getArea());
+        }
+    }
+}
+5.
+6.using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Question6
+{
+    class Program
+    {
+        static void Main(string[]args)
+        {
+             
+            Animal animal = Store.getInstance("cat");
+            animal.voice();
+        }
+    }
+}
+
+namespace Question6
+{
+    abstract class Animal
+    {
+        public abstract void voice();
+    }
+
+    class Cat : Animal
+    {
+        public override void voice()
+        {
+            Console.WriteLine("猫喵喵叫！");
+        }
+    }
+
+    class Pig : Animal
+    {
+        public override void voice()
+        {
+            Console.WriteLine("猪哼哼叫！");
+        }
+    }
+
+    class Dog : Animal
+    {
+        public override void voice()
+        {
+            Console.WriteLine("狗汪汪叫！");
+        }
+    }
+
+    class Store
+    {
+        public static Animal getInstance(string name)
+        {
+            if ("dog".Equals(name))
+                return new Dog();
+            else if ("cat".Equals(name))
+                return new Cat();
+            else 
+                return new Pig();
+        }
+    }
+}
+7.
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Question7
+{
+    class Program
+    {
+        static void Main(string[]args)
+        {
+            Cat cat = new Cat("blue", "mimi");
+            Lady lady1 = new Lady("张女士", cat);
+            lady1.myPetEnjoy();
+
+            Dog dog = new Dog("yellow", "旺财");
+            Lady lady2 = new Lady("王女士", dog);
+            lady2.myPetEnjoy();
+        }
+    }
+}
+
+namespace Question7
+{
+    abstract class Animal
+    {
+        public string Name { get; set; }
+        
+        public abstract void enjoy();
+    }
+
+    class Cat : Animal
+    {
+        public string  eyesColor { get; set; }
+        
+        public Cat(string eyesColor,string name)
+        {
+            this.eyesColor = eyesColor;
+            this.Name = name;
+        }
+
+        public override void enjoy()
+        {
+            Console.WriteLine("miao~,我叫"+Name+"我的眼睛是"+eyesColor+"我很快乐！");
+        }
+    }
+
+    class Dog : Animal
+    {
+        public string furColor { get; set; }
+       
+        public Dog(string furColor, string name)
+        {
+            this.furColor= furColor;
+            this.Name = name;
+        }
+
+        public override void enjoy()
+        {
+            Console.WriteLine("wang~,我叫" + Name + "我的皮毛是" + furColor + "我很快乐！");
+        }
+    }
+
+    class Lady
+    {
+        public string name { get; set; }
+
+        public Animal pet { get; set; }
+
+        public Lady(string name, Animal pet)
+        {
+            this.name = name;
+            this.pet = pet;
+        }
+        public void myPetEnjoy()
+        {
+            pet.enjoy();
+            Console.WriteLine("我叫" + name + "，我的宠物很高兴，我也很高兴！");
+        }
+    }
+}
+8.using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Question8
+{
+    internal class Interfaces
+    {
+        public interface InterfaceA
+        {
+            public void printCapitalLetter();
+        }
+
+        public interface InterfaceB
+        {
+            public void printLowercaseLetter();
+        }
+
+        public class Print : InterfaceA, InterfaceB
+        {
+            public void printCapitalLetter()
+            {
+                int iStart = 65;//A
+                int iEnd = 90;//Z
+                for(int i = iStart; i <= iEnd; i++)
+                    Console.Write((char)i);
+                Console.WriteLine();
+            }
+
+            public void printLowercaseLetter()
+            {
+                int iStart = 97;//a
+                int iEnd = 122;//z
+                for (int i = iStart; i <= iEnd; i++)
+                    Console.Write((char)i);
+                Console.WriteLine();
+            }
+        }
+    }
+}
+
+using static Question8.Interfaces;
+
+namespace Question8
+{
+    class Program
+    {
+        static void Main(string[]args)
+        {
+            InterfaceA a = new Print();
+            InterfaceB b = new Print();
+
+            b.printLowercaseLetter();
+            a.printCapitalLetter();
+
+
+        }
+    }
+}
+9.using System;
+
+namespace Question9
+{
+    class Program
+    {
+        public interface A
+        {
+            double area();
+        }
+
+        public interface B
+        {
+            void setColor(string c);
+        }
+
+        public interface C : A, B 
+        {
+            double volume();
+        }
+
+        class Cylinder : C
+        {
+            public double radius { get; set; }
+            public double height { get; set; }
+            public string color { get; set; }
+            public Cylinder(double radius, double height, string color)
+            {
+                this.radius = radius;
+                this.height = height;
+                this.color = color;
+            }
+
+            public double area()
+            {
+                return radius * radius * 3.14;
+            }
+
+            public void setColor(string c)
+            {
+                Console.WriteLine(c);
+            }
+
+            public double volume()
+            {
+                return height * area();
+            }
+
+            static void Main(string[] args)
+            {
+                Cylinder cylinder = new Cylinder(2, 3, "blue");
+                Console.WriteLine(cylinder.area());
+                Console.WriteLine(cylinder.volume());
+                cylinder.setColor("blue");
+
+            }
+        }
+            
+    }
+}
