@@ -1,0 +1,87 @@
+using System;
+namespace 第二题
+{
+    class Student
+    {
+        private string name;     //姓名
+        private int id;          //学号
+        private string sex;      //性别
+        public string Name
+        {
+            get => name;
+            set => name = value;
+        }
+        public int Id
+        {
+            get => id;
+            set => id = value;
+        }
+        public string Sex
+        {
+            get => sex;
+            set => sex = value;
+        }
+    }
+    class Class
+    {
+        public Student[] students;
+        private int size;        //班级人数
+        public Class(int i)
+        {
+            size = i;
+            InitStudent();
+        }
+        public void InitStudent()      //初始化
+{
+            students = new Student[size];
+        }
+        public void Push()
+        {
+            for(int i=0;i<students.Length;i++)
+            {
+                students[i] = new Student();
+                students[i].Name = Console.ReadLine();
+                students[i].Id = Convert.ToInt32(Console.ReadLine());
+                students[i].Sex = Console.ReadLine();
+            }
+        }
+        public void Pop()
+        {
+            foreach(Student s in students)
+            {
+                Console.WriteLine("姓名：{0}，学号：{1}，性别：{2}", s.Name, s.Id, s.Sex);
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("请输入班级人数：");
+            int i = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("班级1：");
+            Class class1 = new Class(i); 
+            class1.Push();
+            Console.WriteLine("班级2：");
+            Class class2 = new Class(i);
+            class2.Push();
+            Console.WriteLine("班级3：");
+            Class class3 = new Class(i);
+            class3.Push();
+            Console.WriteLine("请选择班级：");
+            int j = Convert.ToInt32(Console.ReadLine());
+            switch(j)
+            {
+                case 1:
+                    class1.Pop();
+                    break;
+                case 2:
+                    class2.Pop();
+                    break;
+                case 3:
+                    class3.Pop();
+                    break;
+            }
+        }
+    }
+}

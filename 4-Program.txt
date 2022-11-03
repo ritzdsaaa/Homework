@@ -1,0 +1,38 @@
+using System;
+using System.Timers;
+
+namespace EventSampleWeatherStation
+{
+    class Program
+    {
+        //定时器
+        public static Timer timer = new Timer(3000);
+        //气象站
+        public static WeatherStation ws = new WeatherStation();
+        //屏幕显示气象信息
+        public static ScreenDisplayMeteorologicalInformation screen = new ScreenDisplayMeteorologicalInformation();
+        //数据库保存气象信息
+        public static DatebaseSaveMeteorologicalInformation db = new DatebaseSaveMeteorologicalInformation();
+        static void Main(string[] args)
+        {
+            //订阅事件
+            ws.NewMeteorologicalInformationComming += screen.Screen_OnNewMeteorologicalInformationCommingEventHandler;
+            ws.NewMeteorologicalInformationComming += db.DatabaseSave_OnNewMeteorologicalInformationCommingEventHandler;
+
+            //设置执行一次（false）还是一直执行(true)
+            timer.AutoReset = true;
+//设置是否执行System.Timers.Timer.Elapsed事件
+            timer.Enabled = true;
+
+            //绑定Elapsed事件
+            timer.Elapsed += OnTimerElapsedHander;
+            
+            timer.Start();
+            Console.ReadLine();
+        }
+        public static void OnTimerElapsedHander(object sender, EventArgs eventArgs)
+        {
+            ws.GetNewMeteorologicalInformation(10, 20);
+        }
+    }
+}

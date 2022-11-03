@@ -1,0 +1,50 @@
+using System;
+using static 第三题.Student;
+namespace 第三题
+{
+    public delegate bool GradePrint(Student s);
+    public class Student
+    {
+        public static int grade=0;
+        public int GP
+        {
+            set => grade = value;
+            get => grade;
+        }
+        public bool Grand()
+        {
+            if (this.GP < 0)
+            {
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("成绩：{0}", GP);
+                return true;
+            }
+        }
+    }
+    public class GradeReport
+    {
+        public static bool GradeReportOrderByTerm(Student s)
+        {
+            s.GP = Convert.ToInt32(Console.ReadLine());
+            return s.Grand();
+        }
+    }
+    class Program
+    { 
+        static void Main(string[] args)
+      {
+            GradePrint gradePrint = GradeReport.GradeReportOrderByTerm;
+            if(gradePrint(new Student()))
+            {
+                Console.WriteLine("成绩单");
+            }
+            else
+            {
+                Console.WriteLine("无效成绩");
+            }
+        }
+    }
+}

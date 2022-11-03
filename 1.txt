@@ -1,0 +1,63 @@
+using System;
+namespace Program1
+{
+    public class MyStack<T>
+
+    {
+        public T[] Item { get; set; }
+        public int top;
+        private int size;
+        public MyStack(int i)
+        {
+            size = i;
+            top = 0;
+            InitStack();
+        }
+        public void InitStack()
+        {
+            Item = new T[size];
+        }
+        public void CLearStack()
+        {
+            Array.Clear(Item, 0, Item.Length);
+        }
+        public bool Push(T item)
+        {
+            if (top >= Item.Length)
+            {
+                return false;
+            }
+            Item[top++] = item;
+            return true;
+        }
+        public T Pop()
+        {  
+            return Item[--top];
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MyStack<int> myStack = new MyStack<int>(5);
+            for(int i = 0; i < myStack.Item.Length; i++)
+            {
+                int item;
+                bool q = int.TryParse(Console.ReadLine(), out item);
+                if (q)
+                {
+                    myStack.Push(item);
+                }
+                else
+                {
+                    Console.WriteLine("输入错误！");
+                }
+            }
+            while (myStack.top > 0)
+            {
+                Console.WriteLine("栈顶元素为：{0}", myStack.Pop());
+            }
+            Console.WriteLine("清空内存成功！");
+        }
+    }
+}
